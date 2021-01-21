@@ -44,17 +44,12 @@ public class solution {
     }
 
 
-//    给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
-//
+//    给定一个链表，返回链表开始入环的第一个节点。如果链表无环，则返回null。
 //为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意，pos 仅仅是用于标识环的情况，并不会作为参数传递到函数中。
-//
 //说明：不允许修改给定的链表。
-//
 //进阶：
-//
 //你是否可以使用 O(1) 空间解决此题？
     //简单方法用哈希表解决问题，进阶用快慢指针解决问题，如果存在环，快慢指针必定相遇
-
     public ListNode detectCycle(ListNode head) {
         if (head == null) {
             return null;
@@ -68,7 +63,8 @@ public class solution {
             } else {
                 return null;
             }
-            //
+            //当遇到时，fast跑的路程为slow的两倍 f:2nb s:nb n为f比s多跑的圈数，而b为环的点数
+            //随后ptr从起点出发，当而ptr和s相遇时的路程为 ptr:a s:a+nb 因为nb为环，所以当ptr与s相遇时为环的起点
             if (fast == slow) {
                 ListNode ptr = head;
                 while (ptr != slow) {

@@ -9,6 +9,7 @@ public class solution {
 
 //    给你一个整型数组 nums ，在数组中找出由三个数组成的最大乘积，并输出这个乘积。
     //能一遍循环结束就用循环一遍，排序消耗资源
+
     public int maximumProduct(int[] nums) {
 //        Arrays.sort(nums);//排序
 //        int n=nums.length;
@@ -80,11 +81,4 @@ public class solution {
 
 }
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-          val = x;
-          next = null;
-    }
-  }
+

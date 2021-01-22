@@ -1,10 +1,9 @@
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class solution {
     public static void main(String[] args){
         solution main=new solution();
-        System.out.println(main.maximumProduct(new int[]{-1, 0, -2, 3, 6, 8, 2, 10, -12}));
+        System.out.println(main.addToArrayForm(new int[]{1,1,0,0},34));
     }
 
 //    628
@@ -79,6 +78,43 @@ public class solution {
         }
         return null;
     }
+    //989. 数组形式的整数加法
+//    对于非负整数X而言，X的数组形式是每位数字按从左到右的顺序形成的数组。例如，如果x = 1231，那么其数组形式为[1,2,3,1]。
+//
+//    给定非负整数 X 的数组形式A，返回整数X+K的数组形式。
+    public List<Integer> addToArrayForm(int[] A, int K) {
+        //按照A的长度进行计算，随后再对K进行判断，将K分位加入a
+//        ArrayList a=new ArrayList();
+//        for(int i=A.length-1;i>=0;i--){
+//            a.add((A[i]+K)%10);
+//            K=(A[i]+K)/10;
+//        }
+//        if(K!=0) {
+//            while (K != 0)
+//            {
+//                a.add(K%10);
+//                K=K/10;
+//            }
+//        }
+//        Collections.reverse(a);
+//        return a;
+        //通过K的长度进行判断，微微提高内存使用率
+        ArrayList a=new ArrayList();
+        int len=A.length-1;
+        while(K!=0 || len>=0){
+            if(len<0){
+                a.add(K%10);
+                K=K/10;
+            }else {
+                a.add((A[len]+K)%10);
+                K=(A[len]+K)/10;
+                len--;
+            }
+        }
+        Collections.reverse(a);
+        return a;
+    }
+
 
 
 }

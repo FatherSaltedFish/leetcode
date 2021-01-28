@@ -2,10 +2,31 @@ import java.util.*;
 
 public class solution {
     public static void main(String[] args){
-        solution main=new solution();
-        int[] a={1,3,5,7};
-        System.out.println(main.findLengthOfLCIS(a));
+        int[] a={1,2,1};
+       System.out.println(new solution().pivotIndex(a));
+
     }
+
+    public int pivotIndex(int[] nums) {
+        if(nums.length-1==0)
+            return 0;
+        if(nums.length-1<2)
+            return -1;
+        int la=0,ra=0;
+        for(int i=1;i<=nums.length-1;i++){
+            ra+=nums[i];
+        }
+        for(int center=0;center<=nums.length-1;center++){
+            if (la == ra)
+                return center;
+            else if(la!=ra && center!=nums.length-1){
+                la+=nums[center];
+                ra-=nums[center+1];
+            }
+        }
+        return -1;
+    }
+
 
 //    628
 //    给你一个整型数组 nums ，在数组中找出由三个数组成的最大乘积，并输出这个乘积。
@@ -239,20 +260,14 @@ public class solution {
 //    在0 <= i < j < dominoes.length的前提下，找出满足dominoes[i] 和dominoes[j]等价的骨牌对 (i, j) 的数量。
 
     public int numEquivDominoPairs(int[][] dominoes) {
-//        int[] num = new int[100];
-//        int ret = 0;
-//        for (int[] domino : dominoes) {
-//            int val = domino[0] < domino[1] ? domino[0] * 10 + domino[1] : domino[1] * 10 + domino[0];
-//            ret += num[val];
-//            num[val]++;
-//        }
-//        return ret;
-
-        int[] num=new int[100];
-        int ret =0;
-        for(int[] dominoe:dominoes){
-            
+        int[] num = new int[100];
+        int ret = 0;
+        for (int[] domino : dominoes) {
+            int val = domino[0] < domino[1] ? domino[0] * 10 + domino[1] : domino[1] * 10 + domino[0];
+            ret += num[val];
+            num[val]++;
         }
+        return ret;
     }
 
 

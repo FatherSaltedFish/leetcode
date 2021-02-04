@@ -2,11 +2,46 @@ import java.util.*;
 
 public class solution {
     public static void main(String[] args){
-        int[] a={1,2,1};
-       System.out.println(new solution().pivotIndex(a));
+        int[] a={9,7,3,5,6,2,0,8,1,9};
+        System.out.println(new solution().findMaxAverage(a,6));
 
     }
 
+    //643. 子数组最大平均数 I
+    public double findMaxAverage(int[] nums, int k) {
+        int max=0;
+        int sum=0;
+        for(int i=0;i<k;i++)
+            sum+=nums[i];
+        max=sum;
+        for(int i=k;i<nums.length;i++){
+            sum+=nums[i]-nums[i-k];
+            max=Math.max(sum,max);
+        }
+        return 1.0*max/k;
+    }
+
+
+    public int[] fairCandySwap(int[] A, int[] B) {
+        int Asum = 0;
+        int Bsum = 0;
+        //求出A数组的和，B数组的和
+        for (int x : A) {
+            Asum += x;
+        }
+        for (int y : B) {
+            Bsum += y;
+        }
+        for (int i = 0; i < A.length; ++i) {
+            for (int j = 0; j < B.length; ++j) {
+                //发现符合条件的情况
+                if (Asum - A[i] + B[j] == Bsum - B[j] + A[i]) {
+                    return new int[]{A[i],B[j]};
+                }
+            }
+        }
+        return new int[]{};
+    }
 
 //1631. 最小体力消耗路径
 //    你准备参加一场远足活动。给你一个二维rows x columns的地图heights，其中heights[row][col]表示格子(row, col)的高度。一开始你在最左上角的格子(0, 0)，且你希望去最右下角的格子(rows-1, columns-1)（注意下标从 0 开始编号）。你每次可以往 上，下，左，右四个方向之一移动，你想要找到耗费 体力 最小的一条路径。
@@ -14,7 +49,7 @@ public class solution {
 //    一条路径耗费的 体力值是路径上相邻格子之间 高度差绝对值的 最大值决定的。
 //
 //    请你返回从左上角走到右下角的最小体力消耗值。
-//    int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     public int minimumEffortPath(int[][] heights) {//迪杰斯特拉算法
         int m = heights.length;
         int n = heights[0].length;
